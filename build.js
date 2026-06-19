@@ -162,19 +162,34 @@ function buildMapSvg(neighborhood, listing) {
     minY = Math.min(minY, n.y - n.r); maxY = Math.max(maxY, n.y + n.r);
   }
   if (starNode) maxY = Math.max(maxY, starNode.y + starNode.r + 18);
-  const M = 12;
+  const M = 16; // visible margin so nothing clips at the edges
   const vbX = (minX - M).toFixed(1), vbY = (minY - M).toFixed(1);
   const vbW = (maxX - minX + 2 * M).toFixed(1), vbH = (maxY - minY + 2 * M).toFixed(1);
 
+  // Log computed geometry so the coordinates can be sanity-checked at build time.
+  console.log(`    map: ${nodes.length} pins${starNode ? " + Open House star" : ""}, viewBox="${vbX} ${vbY} ${vbW} ${vbH}"`);
+  if (process.env.MAP_DEBUG) {
+    for (const n of nodes) {
+      console.log(`      #${n.pin.n} ${n.pin.name}  ${n.pin.lat},${n.pin.lng} -> (${n.x.toFixed(1)}, ${n.y.toFixed(1)})`);
+    }
+    if (starNode) console.log(`      ★ Open House  ${listing.lat},${listing.lng} -> (${starNode.x.toFixed(1)}, ${starNode.y.toFixed(1)})`);
+  }
+
   // --- Render -----------------------------------------------------------
-  let s = `<svg viewBox="${vbX} ${vbY} ${vbW} ${vbH}" role="img" aria-label="Map of featured El Segundo spots" xmlns="http://www.w3.org/2000/svg">`;
+  // The inline style makes the map responsive AND robust on iOS Safari (the
+  // primary device for these texted guides): width:100% fits any container
+  // (no overflow), while an explicit `aspect-ratio` gives the SVG a definite
+  // height so Safari reliably paints its children. Avoid width/height
+  // attributes here — at a viewport narrower than the SVG they overflow.
+  const ar = `${vbW} / ${vbH}`;
+  let s = `<svg viewBox="${vbX} ${vbY} ${vbW} ${vbH}" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:auto;aspect-ratio:${ar}" role="img" aria-label="Map of featured El Segundo spots" xmlns="http://www.w3.org/2000/svg">`;
   s += `<rect x="${vbX}" y="${vbY}" width="${vbW}" height="${vbH}" rx="14" fill="#f0e9da" stroke="#e0d6c4" stroke-width="1"/>`;
 
   for (const n of nodes) {
     const p = n.pin;
     s += `<g>`;
     s += `<circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="${n.r}" fill="${p.color}" stroke="#ffffff" stroke-width="1.6"/>`;
-    s += `<text x="${n.x.toFixed(1)}" y="${n.y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="${p.textColor}">${p.n}</text>`;
+    s += `<text x="${n.x.toFixed(1)}" y="${n.y.toFixed(1)}" dy="0.34em" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="${p.textColor}">${p.n}</text>`;
     s += `</g>`;
   }
 
