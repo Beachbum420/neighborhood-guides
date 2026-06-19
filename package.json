@@ -1,0 +1,12 @@
+{
+  "name": "neighborhood-guides",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static-site generator for Beach City Brokers open-house neighborhood guides.",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "slug": "700-w-palm",
+  "neighborhood": "el-segundo",
+  "address": "700 W Palm Avenue",
+  "listPrice": "$1,599,000",
+  "specs": "3 Bed · 2 Bath · 1,732 sq ft · 4,746 sq ft lot · ESUSD",
+  "tag": "Bring Your Vision — Renovation Opportunity",
+  "blurb": "A rare chance to own a <strong>solid, well-located home in the heart of El Segundo</strong> and make it your own. The bones are here — generous living spaces, a real backyard, hardwood floors, and a two-story layout on a quiet west-side street steps from town. With cosmetic updates and your finishes, this is a home to grow into <strong>and</strong> a chance to build equity in one of the South Bay's most in-demand markets.",
+  "disclaimer": "Sold as-is; buyer to verify all details and permits.",
+  "zillowUrl": "https://www.zillow.com/homedetails/700-W-Palm-Ave-El-Segundo-CA-90245/20392018_zpid/",
+  "heroPhoto": "photos/hero.jpg",
+  "galleryPhotos": [
+    "photos/living.jpg",
+    "photos/kitchen.jpg",
+    "photos/bed.jpg",
+    "photos/living2.jpg",
+    "photos/yard.jpg"
+  ],
+  "similarForSale": [
+    {
+      "price": "$1,299,000",
+      "street": "318 Penn St #2",
+      "specs": "3 bd · 3.5 ba · 1,584 sq ft · Townhome",
+      "zillow": "https://www.zillow.com/homes/318-Penn-St-El-Segundo-CA-90245_rb/"
+    },
+    {
+      "price": "$1,750,000",
+      "street": "758 California St",
+      "specs": "4 bd · 1 ba · 1,282 sq ft · Single-family",
+      "zillow": "https://www.zillow.com/homes/758-California-St-El-Segundo-CA-90245_rb/"
+    },
+    {
+      "price": "$1,799,000",
+      "street": "329 E Maple Ave",
+      "specs": "3 bd · 2 ba · 1,561 sq ft · Single-family",
+      "zillow": "https://www.zillow.com/homes/329-E-Maple-Ave-El-Segundo-CA-90245_rb/"
+    }
+  ],
+  "recentlySold": [
+    {
+      "price": "$2,115,000",
+      "street": "403 E Pine Ave",
+      "specs": "5 bd · 3 ba · 2,193 sq ft",
+      "note": "Sold Oct 2025 · 7 days on market",
+      "zillow": "https://www.zillow.com/homes/403-E-Pine-Ave-El-Segundo-CA-90245_rb/"
+    },
+    {
+      "price": "$1,763,000",
+      "street": "804 Hillcrest St",
+      "specs": "4 bd · 2 ba · 2,000 sq ft",
+      "note": "Sold Apr 2026 · 10 days on market",
+      "zillow": "https://www.zillow.com/homes/804-Hillcrest-St-El-Segundo-CA-90245_rb/"
+    }
+  ],
+  "agent": {
+    "name": "Ryan Verbiest",
+    "license": "Beach City Brokers · DRE #02185763",
+    "phoneRaw": "+13109957741",
+    "phoneDisplay": "(310) 995-7741",
+    "email": "ryanverbiest@gmail.com",
+    "photo": "/assets/agent/ryan-verbiest.jpg"
+  }
+}

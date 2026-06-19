@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{neighborhood.city}} Neighborhood Guide · {{address}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="photo"><img src="{{heroPhoto}}" alt="{{address}}, {{neighborhood.city}}"></div>
+    <div class="scrim"></div>
+    <div class="content">
+      <div class="kicker">Beach City Brokers · Neighborhood Guide</div>
+      <h1>Welcome to<br>{{neighborhood.city}}</h1>
+      <div class="sub">{{neighborhood.tagline}}</div>
+    </div>
+  </header>
+
+  <div class="welcome">
+    <div class="hi">{{neighborhood.welcome.hi}}</div>
+    <p>{{neighborhood.welcome.body}}</p>
+  </div>
+
+  <!-- FEATURED LISTING -->
+  <section class="featured">
+    <div class="inner">
+      <div class="eyebrow">Today's Open House</div>
+      <h2>{{address}}</h2>
+      <div class="feat-price">{{listPrice}}</div>
+      <div class="feat-specs">{{specs}}</div>
+      {{#if tag}}<div class="feat-tag">✦ {{tag}}</div>{{/if}}
+
+      <div class="feat-gallery">
+        {{#each galleryPhotos}}
+        <div class="g{{#if @first}} big{{/if}}"><img src="{{this}}" alt="{{../address}}"></div>
+        {{/each}}
+      </div>
+
+      <div class="feat-blurb">{{{blurb}}}</div>
+
+      <a class="btn block" href="{{zillowUrl}}" target="_blank" rel="noopener">View full listing &amp; all photos on Zillow →</a>
+      <div class="feat-note">Offered by {{agent.name}} · {{agent.license}}.{{#if disclaimer}} {{disclaimer}}{{/if}}</div>
+    </div>
+  </section>
+
+  <!-- SIMILAR HOMES FOR SALE -->
+  {{#if similarForSale}}
+  <section style="background:var(--cream-2)">
+    <div class="eyebrow">On The Market</div>
+    <h2>Similar homes for sale nearby</h2>
+    <p class="lead">A few other {{neighborhood.city}} listings in a similar range, so you can see what else is on the market.</p>
+
+    {{#each similarForSale}}
+    <div class="card">
+      <div class="ctop"><div class="price">{{price}}</div><span class="badge active">Active</span></div>
+      <div class="street">{{street}}</div>
+      <div class="specs">{{specs}}</div>
+      {{#if note}}<div class="meta">{{note}}</div>{{/if}}
+      {{#if zillow}}<a class="zlink" href="{{zillow}}" target="_blank" rel="noopener">View on Zillow <span>↗</span></a>{{/if}}
+    </div>
+    {{/each}}
+  </section>
+  {{/if}}
+
+  <!-- RECENTLY SOLD -->
+  {{#if recentlySold}}
+  <section>
+    <div class="eyebrow">Recent Sales</div>
+    <h2>Recently sold nearby</h2>
+    <p class="lead">Recent {{neighborhood.city}} sales give the truest read on the market.</p>
+
+    {{#each recentlySold}}
+    <div class="card">
+      <div class="ctop"><div class="price">{{price}}</div><span class="badge sold">Sold</span></div>
+      <div class="street">{{street}}</div>
+      <div class="specs">{{specs}}</div>
+      {{#if note}}<div class="meta">{{note}}</div>{{/if}}
+      {{#if zillow}}<a class="zlink" href="{{zillow}}" target="_blank" rel="noopener">View on Zillow <span>↗</span></a>{{/if}}
+    </div>
+    {{/each}}
+  </section>
+  {{/if}}
+
+  <!-- MARKET SNAPSHOT -->
+  <section class="market">
+    {{#if neighborhood.photos.aerial}}
+    <div class="nphoto">
+      <img src="{{neighborhood.photos.aerial.src}}" alt="{{neighborhood.photos.aerial.caption}}" loading="lazy">
+      <div class="scrim"></div>
+      <div class="cap">{{neighborhood.photos.aerial.caption}}</div>
+    </div>
+    {{/if}}
+    <div class="eyebrow">The Market</div>
+    <h2>{{neighborhood.city}} at a glance</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="n">{{neighborhood.market.median}}</div><div class="l">Median home price</div></div>
+      <div class="stat"><div class="n">{{neighborhood.market.ppsf}}</div><div class="l">Avg. price / sq ft</div></div>
+      <div class="stat"><div class="n">{{neighborhood.market.daysToPending}}</div><div class="l">Days to pending</div></div>
+      <div class="stat"><div class="n">{{neighborhood.market.walkScore}}</div><div class="l">Walk Score</div></div>
+    </div>
+    <p class="snap-note">{{neighborhood.market.note}}</p>
+  </section>
+
+  <!-- MAP -->
+  <section class="mapband">
+    <div class="mapbox">
+      <div class="eyebrow" style="justify-content:center">Get Oriented</div>
+      <h2>The lay of the land</h2>
+      <p class="lead" style="margin:0 auto 6px">{{neighborhood.mapIntro}}</p>
+      <p style="font-size:13px;color:var(--muted);margin-top:14px">{{neighborhood.mapNote}}</p>
+    </div>
+  </section>
+
+  <!-- DINING -->
+  <section>
+    {{#if neighborhood.photos.mainstreet}}
+    <div class="nphoto">
+      <img src="{{neighborhood.photos.mainstreet.src}}" alt="{{neighborhood.photos.mainstreet.caption}}" loading="lazy">
+      <div class="scrim"></div>
+      <div class="cap">{{neighborhood.photos.mainstreet.caption}}</div>
+    </div>
+    {{/if}}
+    <div class="eyebrow">Eat &amp; Drink</div>
+    <h2>Where the locals go</h2>
+    <p class="lead">Downtown {{neighborhood.city}} punches well above its size. A few of my favorites, all walkable from Main Street.</p>
+    {{#each neighborhood.dining}}
+    <div class="place"><div class="rank">{{inc @index}}</div><div><div class="nm">{{name}}</div><div class="ds">{{desc}}</div><div class="inf"><span class="star">★ {{rating}}</span> · {{detail}}</div></div></div>
+    {{/each}}
+  </section>
+
+  <!-- COFFEE + BREWERIES -->
+  <section style="background:var(--cream-2)">
+    <div class="eyebrow">Coffee &amp; Craft Beer</div>
+    <h2>Mornings &amp; afters</h2>
+    <p class="lead">Strong independent coffee, and a craft-brewery scene that's become a real draw — most are walkable from one another.</p>
+    <div class="chips" style="margin-bottom:11px">
+      {{#each neighborhood.coffee}}
+      <div class="chip"><b>{{name}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
+      {{/each}}
+    </div>
+    <div class="chips">
+      {{#each neighborhood.breweries}}
+      <div class="chip"><b>{{name}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
+      {{/each}}
+    </div>
+  </section>
+
+  <!-- PARKS -->
+  <section>
+    {{#if neighborhood.photos.beach}}
+    <div class="nphoto banner">
+      <img src="{{neighborhood.photos.beach.src}}" alt="{{neighborhood.photos.beach.caption}}" loading="lazy">
+      <div class="scrim"></div>
+      <div class="cap">{{neighborhood.photos.beach.caption}}</div>
+    </div>
+    {{/if}}
+    <div class="eyebrow">Outdoors</div>
+    <h2>Parks, beach &amp; green space</h2>
+    <p class="lead">For a small city, {{neighborhood.city}} is loaded with parks — plus the beach and a famous plane-spotting overlook.</p>
+    {{#if neighborhood.photos.recpark}}
+    <div class="nphoto inset">
+      <img src="{{neighborhood.photos.recpark.src}}" alt="{{neighborhood.photos.recpark.caption}}" loading="lazy">
+      <div class="scrim"></div>
+      <div class="cap">{{neighborhood.photos.recpark.caption}}</div>
+    </div>
+    {{/if}}
+    {{#each neighborhood.parks}}
+    <div class="park-row"><div class="pn">{{name}}</div><div class="pd">{{detail}}</div></div>
+    {{/each}}
+  </section>
+
+  <!-- SCHOOLS / ESSENTIALS -->
+  <section style="background:var(--cream-2)">
+    <div class="eyebrow">Good to Know</div>
+    <h2>Schools &amp; essentials</h2>
+    <p class="lead">{{neighborhood.schoolsLead}}</p>
+    <div class="chips" style="margin-bottom:11px">
+      {{#each neighborhood.schools}}
+      <div class="chip"><b>{{name}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
+      {{/each}}
+    </div>
+    <div class="chips">
+      {{#each neighborhood.essentials}}
+      <div class="chip"><b>{{name}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
+      {{/each}}
+    </div>
+  </section>
+
+  <!-- CTA / AGENT -->
+  <section class="cta">
+    <div class="eyebrow">Let's Talk</div>
+    <h2>Thinking about a move?</h2>
+    <p>Whether you're buying, selling, or just curious what your home is worth in today's market — I'm a local agent and happy to help, no pressure.</p>
+    <div class="agent">
+      {{#if agent.photo}}<img class="photo" src="{{agent.photo}}" alt="{{agent.name}}">{{/if}}
+      <div class="who">{{agent.name}}</div>
+      <div class="role">{{agent.license}}</div>
+      <a class="line" href="tel:{{agent.phoneRaw}}">📞 Call or text — {{agent.phoneDisplay}}</a>
+      <a class="line" href="mailto:{{agent.email}}">✉️ {{agent.email}}</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brandrow">
+      <img class="logo" src="/assets/brand/bcb-premier-estates.svg" alt="BCB Premier Estates">
+      <div class="brand">Beach City Brokers</div>
+    </div>
+    <div class="tag">{{neighborhood.footerTag}}</div>
+    <div class="fine">Market data compiled from public MLS sources, {{neighborhood.dataSeason}}, for general information only — not an appraisal, offer, or guarantee of value. Comparable properties shown for illustration; each home differs. Equal Housing Opportunity.</div>
+  </footer>
+
+</div>
+</body>
+</html>

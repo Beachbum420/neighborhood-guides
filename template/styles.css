@@ -1,0 +1,158 @@
+/* ============================================================
+   Beach City Brokers — Neighborhood Guide
+   Palette, typography, and layout extracted verbatim from the
+   reference design (el-segundo-guide.html). Edit here to restyle
+   every generated guide at once.
+   ============================================================ */
+
+:root{
+  --navy:#13354e;        /* deep coastal navy */
+  --teal:#2f8f8a;        /* seafoam teal accent */
+  --teal-d:#236f6b;
+  --sand:#e7dcc6;        /* warm sand */
+  --cream:#f7f2e9;       /* bone/cream bg */
+  --cream-2:#efe7d8;
+  --ink:#23303a;
+  --muted:#5f6f79;
+  --line:#e0d6c4;
+  --white:#fff;
+  --gold:#c9a24b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:auto}
+.wrap{max-width:720px;margin:0 auto;background:var(--cream);overflow:hidden}
+a{color:var(--teal-d)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;color:var(--white);overflow:hidden}
+.hero .photo{position:relative;height:380px;overflow:hidden}
+.hero .photo img{height:100%;object-fit:cover;object-position:center 60%}
+.hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,53,78,.55) 0%,rgba(19,53,78,.15) 40%,rgba(19,53,78,.85) 100%)}
+.hero .content{position:absolute;left:0;right:0;bottom:0;padding:28px 26px 30px;z-index:2}
+.kicker{font-family:'Inter';text-transform:uppercase;letter-spacing:.22em;font-size:11px;font-weight:600;color:#bfe3df;margin-bottom:12px}
+.hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:40px;line-height:1.02;letter-spacing:-.01em;text-shadow:0 2px 18px rgba(0,0,0,.3)}
+.hero .sub{font-size:15px;color:#eaf4f2;margin-top:10px;max-width:44ch;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+
+.welcome{padding:26px 26px 6px;background:var(--cream)}
+.welcome p{font-size:15.5px;color:var(--ink)}
+.welcome .hi{font-family:'Fraunces',serif;font-size:19px;color:var(--navy);margin-bottom:8px;font-weight:600}
+
+/* ---------- NEIGHBORHOOD PHOTO BANDS ---------- */
+/* Full-width-within-column photo bands driven by neighborhood data. The caption
+   sits bottom-left over a navy scrim reused from the hero, for a consistent feel. */
+.nphoto{position:relative;border-radius:12px;overflow:hidden;margin-bottom:22px}
+.nphoto img{width:100%;height:190px;object-fit:cover;display:block}
+.nphoto.banner img{height:240px}   /* beach — section lead-in banner */
+.nphoto.inset img{height:170px}    /* rec park — smaller inset */
+.nphoto .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(19,53,78,0) 45%,rgba(19,53,78,.72) 100%);pointer-events:none}
+.nphoto .cap{position:absolute;left:16px;bottom:12px;z-index:2;color:#fff;font-size:12.5px;font-weight:500;letter-spacing:.01em;text-shadow:0 1px 7px rgba(0,0,0,.5)}
+
+/* ---------- SECTION SCAFFOLD ---------- */
+section{padding:34px 26px}
+.eyebrow{display:flex;align-items:center;gap:11px;text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:600;color:var(--teal-d);margin-bottom:8px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--teal);display:inline-block}
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:var(--navy);letter-spacing:-.01em;margin-bottom:8px;line-height:1.12}
+.lead{color:var(--muted);font-size:14.5px;margin-bottom:20px;max-width:52ch}
+
+/* ---------- FEATURED LISTING ---------- */
+.featured{background:var(--navy);color:#fff;padding:0}
+.featured .inner{padding:34px 26px 30px}
+.featured .eyebrow{color:#8fd3ce}
+.featured .eyebrow::before{background:#8fd3ce}
+.featured h2{color:#fff}
+.feat-price{font-family:'Fraunces',serif;font-size:34px;font-weight:600;color:#fff;margin:4px 0 2px}
+.feat-specs{font-size:14px;color:#cfe0e6;letter-spacing:.02em;margin-bottom:6px}
+.feat-tag{display:inline-block;background:rgba(201,162,75,.18);color:#e7c980;border:1px solid rgba(201,162,75,.4);font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;margin-bottom:18px}
+.feat-gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:repeat(2,120px);gap:6px;margin-bottom:20px}
+.feat-gallery .g{overflow:hidden;border-radius:8px}
+.feat-gallery .g img{height:100%;object-fit:cover}
+.feat-gallery .big{grid-row:span 2}
+.feat-blurb{font-size:14.5px;color:#dceaee;margin-bottom:18px}
+.feat-blurb strong{color:#fff}
+.btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:13px 22px;border-radius:10px;text-align:center}
+.btn:hover{background:var(--teal-d)}
+.btn.block{display:block}
+.feat-note{font-size:12px;color:#9fb6bd;margin-top:14px;line-height:1.5}
+
+/* ---------- VALUE / UPSIDE ---------- */
+.upside{background:var(--cream-2)}
+.upside .callout{background:#fff;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:18px 18px;font-size:14.5px;color:var(--ink);margin-bottom:22px}
+.upside .callout b{color:var(--navy)}
+
+/* listing cards */
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.card .ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:16px 17px 4px}
+.card .price{font-family:'Fraunces',serif;font-weight:600;font-size:22px;color:var(--navy)}
+.badge{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap;margin-top:3px}
+.badge.active{background:#e2f1ef;color:var(--teal-d)}
+.badge.sold{background:var(--sand);color:#876a2a}
+.badge.reno{background:#eef3e6;color:#5d7a3a}
+.card .street{font-weight:600;font-size:15px;padding:2px 17px 0;color:var(--ink)}
+.card .specs{font-size:13px;color:var(--muted);padding:2px 17px 0}
+.card .meta{font-size:12.5px;color:#8493a0;padding:8px 17px 0;margin-top:8px;border-top:1px dashed var(--line)}
+.card .zlink{display:block;padding:11px 17px;margin-top:12px;border-top:1px solid var(--line);font-size:13px;font-weight:600;color:var(--teal-d);text-decoration:none}
+.card .zlink:hover{background:#f4f8f7}
+.card .zlink span{float:right;color:var(--muted);font-weight:400}
+
+/* ---------- MARKET STATS ---------- */
+.market{background:var(--white)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.stat{background:#fff;padding:20px 18px}
+.stat .n{font-family:'Fraunces',serif;font-weight:600;font-size:26px;color:var(--teal-d);line-height:1}
+.stat .l{font-size:12px;color:var(--muted);margin-top:7px}
+.snap-note{font-size:12px;color:#9aa6ae;margin-top:14px}
+
+/* ---------- MAP CTA ---------- */
+.mapband{background:var(--cream-2);text-align:center}
+.mapband .mapbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px}
+.mapband h2{margin-bottom:10px}
+
+/* ---------- LIST ITEMS ---------- */
+.place{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
+.place:last-child{border-bottom:none}
+.place .rank{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--teal);min-width:26px;padding-top:1px}
+.place .nm{font-weight:600;font-size:15px;color:var(--navy)}
+.place .ds{font-size:13.5px;color:var(--muted);margin-top:2px}
+.place .inf{font-size:12px;color:#8493a0;margin-top:5px}
+.star{color:var(--gold);font-weight:600}
+
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chip{background:#fff;border:1px solid var(--line);border-radius:11px;padding:11px 13px;flex:1 1 calc(50% - 9px);min-width:150px}
+.chip b{display:block;color:var(--navy);font-weight:600;font-size:13.5px}
+.chip span{color:var(--muted);font-size:12px}
+
+.park-row{display:flex;gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.park-row:last-child{border-bottom:none}
+.park-row .pn{font-weight:600;color:var(--navy);font-size:14.5px;flex:1}
+.park-row .pd{font-size:12.5px;color:var(--muted);text-align:right;max-width:56%}
+
+/* ---------- CTA / AGENT ---------- */
+.cta{background:linear-gradient(165deg,#236f6b 0%,#13354e 100%);color:#fff;text-align:center}
+.cta .eyebrow{color:#9fe0db;justify-content:center}
+.cta .eyebrow::before{display:none}
+.cta h2{color:#fff}
+.cta p{color:#e0ecee;font-size:14.5px;max-width:42ch;margin:0 auto 24px}
+.agent{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:16px;padding:24px 22px;max-width:360px;margin:0 auto}
+.agent .who{font-family:'Fraunces',serif;font-weight:600;font-size:21px}
+.agent .role{font-size:12px;color:#9fe0db;letter-spacing:.05em;margin:4px 0 18px;text-transform:uppercase}
+.agent a.line{display:block;color:#fff;text-decoration:none;font-size:14.5px;font-weight:500;padding:11px 0;border-top:1px solid rgba(255,255,255,.13)}
+.agent a.line:first-of-type{border-top:none}
+
+/* optional agent headshot — only rendered when listing.json sets agent.photo */
+.agent .photo{width:88px;height:88px;border-radius:50%;object-fit:cover;margin:0 auto 14px;border:2px solid rgba(255,255,255,.5);box-shadow:0 4px 18px rgba(0,0,0,.25)}
+
+footer{padding:24px 26px 38px;text-align:center;background:var(--cream)}
+footer .brandrow{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:2px}
+footer .logo{width:130px;height:auto;display:block}
+footer .brand{font-family:'Fraunces',serif;font-weight:600;color:var(--navy);font-size:16px}
+footer .tag{font-size:12px;color:var(--teal-d);letter-spacing:.04em;margin-top:2px}
+footer .fine{font-size:11px;color:#9aa6ae;margin-top:12px;line-height:1.6;max-width:54ch;margin-left:auto;margin-right:auto}
+
+@media(max-width:430px){
+  .hero h1{font-size:32px}
+  .hero .photo{height:320px}
+  .feat-gallery{grid-template-rows:repeat(2,96px)}
+  .chip{flex:1 1 100%}
+}

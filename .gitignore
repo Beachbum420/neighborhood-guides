@@ -1,0 +1,9 @@
+# dependencies
+node_modules/
+
+# generated output — Cloudflare Pages rebuilds this on every push
+dist/
+
+# OS / editor cruft
+.DS_Store
+*.log

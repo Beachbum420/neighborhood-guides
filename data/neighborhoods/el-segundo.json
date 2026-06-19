@@ -1,0 +1,63 @@
+{
+  "city": "El Segundo",
+  "tagline": "Your local guide to \"the Gundo\" — what's on the market, where to eat, where to play, and why this little beach town is one of the South Bay's best places to live.",
+  "welcome": {
+    "hi": "Thanks for stopping by today.",
+    "body": "I put this together so you can take a piece of El Segundo home with you. Inside you'll find the featured home, comparable listings, recent sales, and my honest local picks for food, coffee, parks, and more. Questions on anything? My info's at the bottom — reach out anytime."
+  },
+  "market": {
+    "median": "$1.75M",
+    "ppsf": "~$979",
+    "daysToPending": "~34",
+    "walkScore": "65",
+    "note": "A beach-adjacent city of ~17,000 with its own school district, a walkable Main Street, and quick access to LAX, the 405, and the sand. Figures reflect spring 2026 activity and are for general guidance."
+  },
+  "mapIntro": "The whole appeal of El Segundo is how compact it is — the open house, the beach, downtown, the Rec Park, and the best eats are all within a few minutes of each other.",
+  "mapNote": "📍 Scan the interactive map I shared, or ask me for the link to the live version.",
+  "dining": [
+    {"name": "Porterhouse", "desc": "Intimate, beautifully designed steakhouse with standout cocktails.", "rating": "4.8", "detail": "223 Richmond St · Dinner"},
+    {"name": "Good Stuff", "desc": "The go-to breakfast & brunch diner — easy parking, big portions.", "rating": "4.7", "detail": "131 W Grand Ave · Breakfast / lunch"},
+    {"name": "Jame Enoteca", "desc": "Fresh handmade pasta in a cozy modern-Italian room.", "rating": "4.6", "detail": "241 Main St · Italian"},
+    {"name": "Sausal", "desc": "Wood-fired \"Nuevo Rancho\" Mexican with a great happy hour.", "rating": "4.5", "detail": "219 Main St · Mexican"},
+    {"name": "Nomad Eatery", "desc": "Mediterranean-French plates, patio seating, strong wine list.", "rating": "4.5", "detail": "2041 Rosecrans Ave · Dinner"}
+  ],
+  "coffee": [
+    {"name": "The Coffee Bar", "rating": "4.8", "detail": "520 Center St · cozy local favorite"},
+    {"name": "Smoky Hollow Roasters", "rating": "4.5", "detail": "118 Sierra St · roaster + work-friendly"},
+    {"name": "Offset Coffee", "rating": "4.6", "detail": "150 PCH · roasts on-site"},
+    {"name": "Blue Butterfly", "rating": "4.5", "detail": "351 Main St · big downtown patio"}
+  ],
+  "breweries": [
+    {"name": "Five Point Five", "rating": "4.9", "detail": "137 Nevada St · Filipino-style pizza"},
+    {"name": "Sugar Monkey", "rating": "4.8", "detail": "339 Indiana St · backyard hangout"},
+    {"name": "El Segundo Brewing", "rating": "4.7", "detail": "140 Main St · the OG, food trucks"},
+    {"name": "Brewport Tap House", "rating": "4.6", "detail": "204 Main St · self-serve taps"}
+  ],
+  "parks": [
+    {"name": "El Segundo Beach", "detail": "Quiet local beach + Strand bike path"},
+    {"name": "Recreation Park", "detail": "Tennis, pickleball, ball fields, playgrounds"},
+    {"name": "Clutter's Park", "detail": "★4.7 · iconic LAX plane-spotting spot"},
+    {"name": "Acacia Park", "detail": "Newest park, modern playground"},
+    {"name": "Sycamore Park", "detail": "Picnic + BBQ, great for kids"},
+    {"name": "Hilltop Park", "detail": "Neighborhood park with a kiddie pool"}
+  ],
+  "schoolsLead": "El Segundo Unified is a major draw for families — small, well-regarded, and entirely within the city.",
+  "schools": [
+    {"name": "Center Street Elementary", "detail": "700 Center St · ESUSD"},
+    {"name": "El Segundo Middle / High", "detail": "Main St · ESUSD"},
+    {"name": "Da Vinci Schools", "detail": "Charter high schools nearby"},
+    {"name": "Vistamar School", "detail": "737 Hawaii St · private"}
+  ],
+  "essentials": [
+    {"name": "Commute", "detail": "Minutes to LAX, the 405 & 105"},
+    {"name": "Beach", "detail": "ES & Manhattan Beach close by"}
+  ],
+  "footerTag": "El Segundo · Redondo Beach · Riviera",
+  "dataSeason": "spring 2026",
+  "photos": {
+    "beach":      {"file": "es-beach.jpg",      "caption": "El Segundo Beach & the Strand"},
+    "mainstreet": {"file": "es-mainstreet.jpg", "caption": "Downtown Main Street"},
+    "recpark":    {"file": "es-recpark.jpg",    "caption": "Recreation Park"},
+    "aerial":     {"file": "es-aerial.jpg",      "caption": "El Segundo from above"}
+  }
+}
