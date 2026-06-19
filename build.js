@@ -52,6 +52,144 @@ function resolveNeighborhoodPhotos(photos, neighborhoodSlug) {
   return resolved;
 }
 
+// Category → marker colors. Single source of truth for both the SVG pins and
+// the HTML legend badges. bagel/sweets uses sand, so it needs dark ink.
+const MAP_COLORS = {
+  food:   { fill: "#13354e", ink: "#ffffff" }, // navy
+  pizza:  { fill: "#c9a24b", ink: "#13354e" }, // gold (dark ink for contrast)
+  coffee: { fill: "#6d5a43", ink: "#ffffff" }, // coffee brown
+  bagel:  { fill: "#e7dcc6", ink: "#5a4a2a" }, // sand
+  beer:   { fill: "#236f6b", ink: "#ffffff" }, // deep teal
+  park:   { fill: "#5d7a3a", ink: "#ffffff" }, // green
+};
+const MAP_FALLBACK = { fill: "#5f6f79", ink: "#ffffff" };
+
+function catColor(cat) {
+  const key = String(cat || "").split("/")[0].trim();
+  return MAP_COLORS[key] || MAP_FALLBACK;
+}
+
+// Five-pointed star polygon points centered at (cx,cy).
+function starPolygon(cx, cy, ro, ri, n = 5) {
+  const pts = [];
+  for (let i = 0; i < n * 2; i++) {
+    const r = i % 2 === 0 ? ro : ri;
+    const a = (Math.PI / n) * i - Math.PI / 2;
+    pts.push(`${(cx + r * Math.cos(a)).toFixed(1)},${(cy + r * Math.sin(a)).toFixed(1)}`);
+  }
+  return pts.join(" ");
+}
+
+// Build a self-contained inline SVG neighborhood map from the shared map pins
+// plus the per-listing star coordinates. Also annotates each pin with its
+// legend badge colors. Returns "" when there are no pins (caller hides the block).
+function buildMapSvg(neighborhood, listing) {
+  const map = neighborhood && neighborhood.map;
+  if (!map || !Array.isArray(map.pins) || map.pins.length === 0) return "";
+
+  // Color every pin — reused by the SVG below and the legend in the template.
+  for (const p of map.pins) {
+    const c = catColor(p.cat);
+    p.color = c.fill;
+    p.textColor = c.ink;
+  }
+
+  const hasStar =
+    listing && typeof listing.lat === "number" && typeof listing.lng === "number";
+  const star = hasStar ? { lat: listing.lat, lng: listing.lng } : null;
+
+  // --- Projection -------------------------------------------------------
+  // Equirectangular lat/lng → x/y. x grows with longitude (east → right).
+  // y is FLIPPED, because screen-y grows downward while latitude grows north.
+  // Longitude is scaled by cos(centerLat) so one degree east covers the same
+  // on-screen distance as one degree north at this latitude (no E-W stretch).
+  const lats = map.pins.map((p) => p.lat).concat(star ? [star.lat] : []);
+  const lngs = map.pins.map((p) => p.lng).concat(star ? [star.lng] : []);
+  const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+  const minLng = Math.min(...lngs), maxLng = Math.max(...lngs);
+  const cosLat = Math.cos((((minLat + maxLat) / 2) * Math.PI) / 180);
+
+  const PAD = 30; // px padding baked into the projection
+  const DRAW_W = 360; // target inner drawing width in viewBox units
+  const geoW = Math.max((maxLng - minLng) * cosLat, 1e-9);
+  const scale = DRAW_W / geoW;
+  const project = (lat, lng) => [
+    PAD + (lng - minLng) * cosLat * scale,
+    PAD + (maxLat - lat) * scale, // flip y
+  ];
+
+  // --- Nodes + de-clustering -------------------------------------------
+  const R = 13; // pin radius
+  const nodes = map.pins.map((p) => {
+    const [x, y] = project(p.lat, p.lng);
+    return { x, y, r: R, pin: p };
+  });
+  let starNode = null;
+  if (star) {
+    const [x, y] = project(star.lat, star.lng);
+    starNode = { x, y, r: 18, fixed: true };
+  }
+
+  // Push apart any markers closer than r+r+GAP so the tight downtown cluster
+  // stays readable. The star is held fixed; numbered pins relax around it.
+  const all = starNode ? nodes.concat([starNode]) : nodes;
+  const GAP = 6;
+  for (let iter = 0; iter < 400; iter++) {
+    let moved = false;
+    for (let i = 0; i < all.length; i++) {
+      for (let j = i + 1; j < all.length; j++) {
+        const a = all[i], b = all[j];
+        let dx = b.x - a.x, dy = b.y - a.y;
+        let d = Math.hypot(dx, dy);
+        const min = a.r + b.r + GAP;
+        if (d === 0) { dx = 0.5; dy = 0.5; d = Math.hypot(dx, dy); }
+        if (d < min) {
+          const ux = dx / d, uy = dy / d, push = min - d;
+          if (a.fixed) { b.x += ux * push; b.y += uy * push; }
+          else if (b.fixed) { a.x -= ux * push; a.y -= uy * push; }
+          else { a.x -= (ux * push) / 2; a.y -= (uy * push) / 2; b.x += (ux * push) / 2; b.y += (uy * push) / 2; }
+          moved = true;
+        }
+      }
+    }
+    if (!moved) break;
+  }
+
+  // --- viewBox (leave room under the star for its label) ----------------
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (const n of all) {
+    minX = Math.min(minX, n.x - n.r); maxX = Math.max(maxX, n.x + n.r);
+    minY = Math.min(minY, n.y - n.r); maxY = Math.max(maxY, n.y + n.r);
+  }
+  if (starNode) maxY = Math.max(maxY, starNode.y + starNode.r + 18);
+  const M = 12;
+  const vbX = (minX - M).toFixed(1), vbY = (minY - M).toFixed(1);
+  const vbW = (maxX - minX + 2 * M).toFixed(1), vbH = (maxY - minY + 2 * M).toFixed(1);
+
+  // --- Render -----------------------------------------------------------
+  let s = `<svg viewBox="${vbX} ${vbY} ${vbW} ${vbH}" role="img" aria-label="Map of featured El Segundo spots" xmlns="http://www.w3.org/2000/svg">`;
+  s += `<rect x="${vbX}" y="${vbY}" width="${vbW}" height="${vbH}" rx="14" fill="#f0e9da" stroke="#e0d6c4" stroke-width="1"/>`;
+
+  for (const n of nodes) {
+    const p = n.pin;
+    s += `<g>`;
+    s += `<circle cx="${n.x.toFixed(1)}" cy="${n.y.toFixed(1)}" r="${n.r}" fill="${p.color}" stroke="#ffffff" stroke-width="1.6"/>`;
+    s += `<text x="${n.x.toFixed(1)}" y="${n.y.toFixed(1)}" text-anchor="middle" dominant-baseline="central" font-family="Inter,system-ui,sans-serif" font-size="15" font-weight="600" fill="${p.textColor}">${p.n}</text>`;
+    s += `</g>`;
+  }
+
+  if (starNode) {
+    const sx = starNode.x, sy = starNode.y;
+    s += `<g>`;
+    s += `<polygon points="${starPolygon(sx, sy, 17, 7.5)}" fill="#2f8f8a" stroke="#ffffff" stroke-width="1.6"/>`;
+    s += `<text x="${sx.toFixed(1)}" y="${(sy + starNode.r + 12).toFixed(1)}" text-anchor="middle" font-family="Inter,system-ui,sans-serif" font-size="12" font-weight="700" fill="#13354e" stroke="#f0e9da" stroke-width="3.2" paint-order="stroke" stroke-linejoin="round">Open House</text>`;
+    s += `</g>`;
+  }
+
+  s += `</svg>`;
+  return s;
+}
+
 function main() {
   // Fresh output every build.
   fs.rmSync(DIST_DIR, { recursive: true, force: true });
@@ -106,8 +244,11 @@ function main() {
     // skips its band in the template instead of showing a broken image.
     neighborhood.photos = resolveNeighborhoodPhotos(neighborhood.photos, listing.neighborhood);
 
+    // Generate the inline SVG map (also tags each pin with its legend colors).
+    const mapSvg = buildMapSvg(neighborhood, listing);
+
     // Merge: listing fields at the top level, neighborhood under `neighborhood`.
-    const context = { ...listing, neighborhood };
+    const context = { ...listing, neighborhood, mapSvg };
 
     // Render + write the page.
     const html = template(context);

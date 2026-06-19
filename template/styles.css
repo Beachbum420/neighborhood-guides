@@ -109,6 +109,23 @@ h2{font-family:'Fraunces',serif;font-weight:600;font-size:27px;color:var(--navy)
 .mapband .mapbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px}
 .mapband h2{margin-bottom:10px}
 
+/* numbered static map + legend */
+.mapwrap{margin:4px 0 18px}
+.mapwrap svg{width:100%;height:auto;display:block;border-radius:14px}
+.maplegend{list-style:none;margin:0;padding:0;text-align:left;display:grid;grid-template-columns:1fr;gap:6px 18px}
+@media(min-width:560px){.maplegend{grid-template-columns:1fr 1fr}}
+.maplegend a{display:flex;align-items:flex-start;gap:9px;text-decoration:none;padding:3px 0}
+.maplegend .lg-num{flex:none;width:22px;height:22px;border-radius:50%;font-size:11.5px;font-weight:600;display:flex;align-items:center;justify-content:center;line-height:1}
+.maplegend .lg-text{font-size:12px;color:var(--muted);line-height:1.35}
+.maplegend .lg-text b{color:var(--navy);font-weight:600}
+.maplegend a:hover .lg-text b{text-decoration:underline}
+.maplegend .ext{color:var(--teal);font-size:10px}
+
+/* tappable place names → Google Maps */
+a.maplink{color:inherit;text-decoration:none}
+a.maplink:hover{text-decoration:underline}
+a.maplink .ext{color:var(--teal);font-size:.78em;margin-left:3px;vertical-align:1px;text-decoration:none;display:inline-block}
+
 /* ---------- LIST ITEMS ---------- */
 .place{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}
 .place:last-child{border-bottom:none}

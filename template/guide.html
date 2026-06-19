@@ -113,8 +113,20 @@
     <div class="mapbox">
       <div class="eyebrow" style="justify-content:center">Get Oriented</div>
       <h2>The lay of the land</h2>
-      <p class="lead" style="margin:0 auto 6px">{{neighborhood.mapIntro}}</p>
-      <p style="font-size:13px;color:var(--muted);margin-top:14px">{{neighborhood.mapNote}}</p>
+      <p class="lead" style="margin:0 auto 14px">{{neighborhood.mapIntro}}</p>
+      {{#if mapSvg}}
+      <div class="mapwrap">{{{mapSvg}}}</div>
+      <ol class="maplegend">
+        {{#each neighborhood.map.pins}}
+        <li>
+          <a href="{{mapsUrl}}" target="_blank" rel="noopener">
+            <span class="lg-num" style="background:{{color}};color:{{textColor}}">{{n}}</span>
+            <span class="lg-text"><b>{{name}}</b>{{#if detail}} · {{detail}}{{/if}}{{#if rating}} · <span class="star">★{{rating}}</span>{{/if}} <span class="ext">↗</span></span>
+          </a>
+        </li>
+        {{/each}}
+      </ol>
+      {{/if}}
     </div>
   </section>
 
@@ -131,23 +143,30 @@
     <h2>Where the locals go</h2>
     <p class="lead">Downtown {{neighborhood.city}} punches well above its size. A few of my favorites, all walkable from Main Street.</p>
     {{#each neighborhood.dining}}
-    <div class="place"><div class="rank">{{inc @index}}</div><div><div class="nm">{{name}}</div><div class="ds">{{desc}}</div><div class="inf"><span class="star">★ {{rating}}</span> · {{detail}}</div></div></div>
+    <div class="place"><div class="rank">{{inc @index}}</div><div><div class="nm">{{#if mapsUrl}}<a class="maplink" href="{{mapsUrl}}" target="_blank" rel="noopener">{{name}}<span class="ext">↗</span></a>{{else}}{{name}}{{/if}}</div><div class="ds">{{desc}}</div><div class="inf"><span class="star">★ {{rating}}</span> · {{detail}}</div></div></div>
     {{/each}}
   </section>
 
-  <!-- COFFEE + BREWERIES -->
+  <!-- COFFEE + BAGELS + BREWERIES -->
   <section style="background:var(--cream-2)">
-    <div class="eyebrow">Coffee &amp; Craft Beer</div>
+    <div class="eyebrow">Coffee, Sweets &amp; Craft Beer</div>
     <h2>Mornings &amp; afters</h2>
-    <p class="lead">Strong independent coffee, and a craft-brewery scene that's become a real draw — most are walkable from one another.</p>
+    <p class="lead">Strong independent coffee, fresh bagels and sweets, and a craft-brewery scene that's become a real draw — most are walkable from one another.</p>
     <div class="chips" style="margin-bottom:11px">
       {{#each neighborhood.coffee}}
-      <div class="chip"><b>{{name}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
+      <div class="chip"><b>{{#if mapsUrl}}<a class="maplink" href="{{mapsUrl}}" target="_blank" rel="noopener">{{name}}<span class="ext">↗</span></a>{{else}}{{name}}{{/if}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
       {{/each}}
     </div>
+    {{#if neighborhood.bagels}}
+    <div class="chips" style="margin-bottom:11px">
+      {{#each neighborhood.bagels}}
+      <div class="chip"><b>{{#if mapsUrl}}<a class="maplink" href="{{mapsUrl}}" target="_blank" rel="noopener">{{name}}<span class="ext">↗</span></a>{{else}}{{name}}{{/if}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
+      {{/each}}
+    </div>
+    {{/if}}
     <div class="chips">
       {{#each neighborhood.breweries}}
-      <div class="chip"><b>{{name}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
+      <div class="chip"><b>{{#if mapsUrl}}<a class="maplink" href="{{mapsUrl}}" target="_blank" rel="noopener">{{name}}<span class="ext">↗</span></a>{{else}}{{name}}{{/if}}{{#if rating}} ★{{rating}}{{/if}}</b><span>{{detail}}</span></div>
       {{/each}}
     </div>
   </section>
@@ -172,7 +191,7 @@
     </div>
     {{/if}}
     {{#each neighborhood.parks}}
-    <div class="park-row"><div class="pn">{{name}}</div><div class="pd">{{detail}}</div></div>
+    <div class="park-row"><div class="pn">{{#if mapsUrl}}<a class="maplink" href="{{mapsUrl}}" target="_blank" rel="noopener">{{name}}<span class="ext">↗</span></a>{{else}}{{name}}{{/if}}</div><div class="pd">{{detail}}</div></div>
     {{/each}}
   </section>
 

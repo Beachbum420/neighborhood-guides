@@ -1,6 +1,6 @@
 {
   "city": "El Segundo",
-  "tagline": "Your local guide to \"the Gundo\" — what's on the market, where to eat, where to play, and why this little beach town is one of the South Bay's best places to live.",
+  "tagline": "Your local guide to El Segundo — what's on the market, where to eat, where to play, and why this little beach town is one of the South Bay's best places to live.",
   "welcome": {
     "hi": "Thanks for stopping by today.",
     "body": "I put this together so you can take a piece of El Segundo home with you. Inside you'll find the featured home, comparable listings, recent sales, and my honest local picks for food, coffee, parks, and more. Questions on anything? My info's at the bottom — reach out anytime."
@@ -12,34 +12,39 @@
     "walkScore": "65",
     "note": "A beach-adjacent city of ~17,000 with its own school district, a walkable Main Street, and quick access to LAX, the 405, and the sand. Figures reflect spring 2026 activity and are for general guidance."
   },
-  "mapIntro": "The whole appeal of El Segundo is how compact it is — the open house, the beach, downtown, the Rec Park, and the best eats are all within a few minutes of each other.",
-  "mapNote": "📍 Scan the interactive map I shared, or ask me for the link to the live version.",
+  "mapIntro": "The whole appeal of El Segundo is how compact it is — the open house, the beach, downtown, the Rec Park, and the best eats are all within a few minutes of each other. Tap any spot to open it in Google Maps.",
   "dining": [
-    {"name": "Porterhouse", "desc": "Intimate, beautifully designed steakhouse with standout cocktails.", "rating": "4.8", "detail": "223 Richmond St · Dinner"},
-    {"name": "Good Stuff", "desc": "The go-to breakfast & brunch diner — easy parking, big portions.", "rating": "4.7", "detail": "131 W Grand Ave · Breakfast / lunch"},
-    {"name": "Jame Enoteca", "desc": "Fresh handmade pasta in a cozy modern-Italian room.", "rating": "4.6", "detail": "241 Main St · Italian"},
-    {"name": "Sausal", "desc": "Wood-fired \"Nuevo Rancho\" Mexican with a great happy hour.", "rating": "4.5", "detail": "219 Main St · Mexican"},
-    {"name": "Nomad Eatery", "desc": "Mediterranean-French plates, patio seating, strong wine list.", "rating": "4.5", "detail": "2041 Rosecrans Ave · Dinner"}
+    {"name": "Porterhouse", "desc": "Intimate, beautifully designed steakhouse with standout cocktails.", "rating": "4.8", "detail": "223 Richmond St · Dinner", "mapsUrl": "https://maps.google.com/?cid=11415002655747031796"},
+    {"name": "Good Stuff", "desc": "The go-to breakfast & brunch diner — easy parking, big portions.", "rating": "4.7", "detail": "131 W Grand Ave · Breakfast / lunch", "mapsUrl": "https://maps.google.com/?cid=2689731930247856173"},
+    {"name": "Jame Enoteca", "desc": "Fresh handmade pasta in a cozy modern-Italian room — the great Italian spot.", "rating": "4.6", "detail": "241 Main St · Italian", "mapsUrl": "https://maps.google.com/?q=Jame+Enoteca+241+Main+St+El+Segundo"},
+    {"name": "Sausal", "desc": "Wood-fired \"Nuevo Rancho\" Mexican with a great happy hour.", "rating": "4.5", "detail": "219 Main St · Mexican", "mapsUrl": "https://maps.google.com/?q=Sausal+219+Main+St+El+Segundo"},
+    {"name": "¡Jaime! Taqueria", "desc": "Standout tacos, quesabirria, and breakfast burritos with a cheese-crusted tortilla.", "rating": "4.2", "detail": "450 Main St · Tacos & breakfast burritos", "mapsUrl": "https://maps.google.com/?q=Jaime+Taqueria+450+Main+St+El+Segundo"},
+    {"name": "The Slice & Pint", "desc": "Lively pizza parlor pouring El Segundo Brewing beers — garlic knots and big slices.", "rating": "4.6", "detail": "130 W Grand Ave · NY-style pizza + ESBC on tap", "mapsUrl": "https://maps.google.com/?q=The+Slice+and+Pint+130+W+Grand+Ave+El+Segundo"},
+    {"name": "Nomad Eatery", "desc": "Mediterranean-French plates, patio seating, strong wine list.", "rating": "4.5", "detail": "2041 Rosecrans Ave · Dinner", "mapsUrl": "https://maps.google.com/?q=Nomad+Eatery+2041+Rosecrans+Ave+El+Segundo"}
   ],
   "coffee": [
-    {"name": "The Coffee Bar", "rating": "4.8", "detail": "520 Center St · cozy local favorite"},
-    {"name": "Smoky Hollow Roasters", "rating": "4.5", "detail": "118 Sierra St · roaster + work-friendly"},
-    {"name": "Offset Coffee", "rating": "4.6", "detail": "150 PCH · roasts on-site"},
-    {"name": "Blue Butterfly", "rating": "4.5", "detail": "351 Main St · big downtown patio"}
+    {"name": "Smoky Hollow Roasters", "rating": "4.5", "detail": "118 Sierra St · coolest local roaster", "mapsUrl": "https://maps.google.com/?q=Smoky+Hollow+Roasters+118+Sierra+St+El+Segundo"},
+    {"name": "The Coffee Bar", "rating": "4.8", "detail": "520 Center St · cozy local favorite", "mapsUrl": "https://maps.google.com/?cid=8690313802223748989"},
+    {"name": "Offset Coffee", "rating": "4.6", "detail": "150 PCH · roasts on-site", "mapsUrl": "https://maps.google.com/?q=Offset+Coffee+150+Pacific+Coast+Hwy+El+Segundo"},
+    {"name": "Blue Butterfly", "rating": "4.5", "detail": "351 Main St · big downtown patio", "mapsUrl": "https://maps.google.com/?q=Blue+Butterfly+351+Main+St+El+Segundo"}
+  ],
+  "bagels": [
+    {"name": "Uncle Stevey's Bagels", "rating": "4.5", "detail": "213 Richmond St · East Coast bagels & babka", "mapsUrl": "https://maps.google.com/?q=Uncle+Steveys+Bagels+213+Richmond+St+El+Segundo"},
+    {"name": "Creamy Boys Ice Cream", "rating": "4.9", "detail": "118 W Grand Ave · NZ-style soft serve", "mapsUrl": "https://maps.google.com/?q=Creamy+Boys+118+W+Grand+Ave+El+Segundo"}
   ],
   "breweries": [
-    {"name": "Five Point Five", "rating": "4.9", "detail": "137 Nevada St · Filipino-style pizza"},
-    {"name": "Sugar Monkey", "rating": "4.8", "detail": "339 Indiana St · backyard hangout"},
-    {"name": "El Segundo Brewing", "rating": "4.7", "detail": "140 Main St · the OG, food trucks"},
-    {"name": "Brewport Tap House", "rating": "4.6", "detail": "204 Main St · self-serve taps"}
+    {"name": "El Segundo Brewing", "rating": "4.7", "detail": "140 Main St · the OG, food trucks", "mapsUrl": "https://maps.google.com/?cid=17986701665061556232"},
+    {"name": "Five Point Five", "rating": "4.9", "detail": "137 Nevada St · Filipino-style pizza", "mapsUrl": "https://maps.google.com/?q=Five+Point+Five+Brewing+137+Nevada+St+El+Segundo"},
+    {"name": "Sugar Monkey", "rating": "4.8", "detail": "339 Indiana St · backyard hangout", "mapsUrl": "https://maps.google.com/?q=Sugar+Monkey+339+Indiana+St+El+Segundo"},
+    {"name": "Brewport Tap House", "rating": "4.6", "detail": "204 Main St · self-serve taps", "mapsUrl": "https://maps.google.com/?q=Brewport+Tap+House+204+Main+St+El+Segundo"}
   ],
   "parks": [
-    {"name": "El Segundo Beach", "detail": "Quiet local beach + Strand bike path"},
-    {"name": "Recreation Park", "detail": "Tennis, pickleball, ball fields, playgrounds"},
-    {"name": "Clutter's Park", "detail": "★4.7 · iconic LAX plane-spotting spot"},
-    {"name": "Acacia Park", "detail": "Newest park, modern playground"},
-    {"name": "Sycamore Park", "detail": "Picnic + BBQ, great for kids"},
-    {"name": "Hilltop Park", "detail": "Neighborhood park with a kiddie pool"}
+    {"name": "El Segundo Beach", "detail": "Quiet local beach + Strand bike path", "mapsUrl": "https://maps.google.com/?cid=16843913457632878526"},
+    {"name": "Recreation Park", "detail": "Tennis, pickleball, ball fields, playgrounds", "mapsUrl": "https://maps.google.com/?cid=7165887575635930693"},
+    {"name": "Clutter's Park", "detail": "★4.7 · iconic LAX plane-spotting spot", "mapsUrl": "https://maps.google.com/?cid=3926806583090465055"},
+    {"name": "Acacia Park", "detail": "Newest park, modern playground", "mapsUrl": "https://maps.google.com/?q=Acacia+Park+El+Segundo"},
+    {"name": "Sycamore Park", "detail": "Picnic + BBQ, great for kids", "mapsUrl": "https://maps.google.com/?q=Sycamore+Park+El+Segundo"},
+    {"name": "Hilltop Park", "detail": "Neighborhood park with a kiddie pool", "mapsUrl": "https://maps.google.com/?q=Hilltop+Park+El+Segundo"}
   ],
   "schoolsLead": "El Segundo Unified is a major draw for families — small, well-regarded, and entirely within the city.",
   "schools": [
@@ -52,6 +57,24 @@
     {"name": "Commute", "detail": "Minutes to LAX, the 405 & 105"},
     {"name": "Beach", "detail": "ES & Manhattan Beach close by"}
   ],
+  "map": {
+    "pins": [
+      {"n": 1,  "cat": "food",   "name": "Porterhouse",            "detail": "223 Richmond St · Steakhouse",   "rating": "4.8", "lat": 33.918603, "lng": -118.417486, "mapsUrl": "https://maps.google.com/?cid=11415002655747031796"},
+      {"n": 2,  "cat": "food",   "name": "Good Stuff",             "detail": "131 W Grand Ave · Breakfast",     "rating": "4.7", "lat": 33.919134, "lng": -118.417091, "mapsUrl": "https://maps.google.com/?cid=2689731930247856173"},
+      {"n": 3,  "cat": "food",   "name": "Jame Enoteca",           "detail": "241 Main St · Italian",           "rating": "4.6", "lat": 33.918255, "lng": -118.416380, "mapsUrl": "https://maps.google.com/?q=Jame+Enoteca+241+Main+St+El+Segundo"},
+      {"n": 4,  "cat": "food",   "name": "Sausal",                 "detail": "219 Main St · Mexican",           "rating": "4.5", "lat": 33.918013, "lng": -118.416167, "mapsUrl": "https://maps.google.com/?q=Sausal+219+Main+St+El+Segundo"},
+      {"n": 5,  "cat": "food",   "name": "¡Jaime! Taqueria",       "detail": "450 Main St · Tacos & burritos",  "rating": "4.2", "lat": 33.922109, "lng": -118.415568, "mapsUrl": "https://maps.google.com/?q=Jaime+Taqueria+450+Main+St+El+Segundo"},
+      {"n": 6,  "cat": "pizza",  "name": "The Slice & Pint",       "detail": "130 W Grand Ave · NY-style pizza","rating": "4.6", "lat": 33.918848, "lng": -118.417030, "mapsUrl": "https://maps.google.com/?q=The+Slice+and+Pint+130+W+Grand+Ave+El+Segundo"},
+      {"n": 7,  "cat": "coffee", "name": "Smoky Hollow Roasters",  "detail": "118 Sierra St · local roaster",   "rating": "4.5", "lat": 33.917114, "lng": -118.408576, "mapsUrl": "https://maps.google.com/?q=Smoky+Hollow+Roasters+118+Sierra+St+El+Segundo"},
+      {"n": 8,  "cat": "coffee", "name": "The Coffee Bar",         "detail": "520 Center St",                   "rating": "4.8", "lat": 33.922959, "lng": -118.404357, "mapsUrl": "https://maps.google.com/?cid=8690313802223748989"},
+      {"n": 9,  "cat": "bagel",  "name": "Uncle Stevey's Bagels",  "detail": "213 Richmond St · bagels & babka","rating": "4.5", "lat": 33.918313, "lng": -118.417362, "mapsUrl": "https://maps.google.com/?q=Uncle+Steveys+Bagels+213+Richmond+St+El+Segundo"},
+      {"n": 10, "cat": "bagel",  "name": "Creamy Boys Ice Cream",  "detail": "118 W Grand Ave · NZ soft serve", "rating": "4.9", "lat": 33.918863, "lng": -118.416723, "mapsUrl": "https://maps.google.com/?q=Creamy+Boys+118+W+Grand+Ave+El+Segundo"},
+      {"n": 11, "cat": "beer",   "name": "El Segundo Brewing Co.", "detail": "140 Main St · the OG",            "rating": "4.7", "lat": 33.917736, "lng": -118.415627, "mapsUrl": "https://maps.google.com/?cid=17986701665061556232"},
+      {"n": 12, "cat": "beer",   "name": "Five Point Five Brewing","detail": "137 Nevada St",                   "rating": "4.9", "lat": 33.917459, "lng": -118.403953, "mapsUrl": "https://maps.google.com/?q=Five+Point+Five+Brewing+137+Nevada+St+El+Segundo"},
+      {"n": 13, "cat": "park",   "name": "Recreation Park",        "detail": "401 Sheldon St",                  "lat": 33.921435, "lng": -118.412002, "mapsUrl": "https://maps.google.com/?cid=7165887575635930693"},
+      {"n": 14, "cat": "park",   "name": "El Segundo Beach",       "detail": "Strand & bike path",              "lat": 33.913523, "lng": -118.427811, "mapsUrl": "https://maps.google.com/?cid=16843913457632878526"}
+    ]
+  },
   "footerTag": "El Segundo · Redondo Beach · Riviera",
   "dataSeason": "spring 2026",
   "photos": {

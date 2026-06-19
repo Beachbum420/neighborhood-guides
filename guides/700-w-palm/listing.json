@@ -1,6 +1,8 @@
 {
   "slug": "700-w-palm",
   "neighborhood": "el-segundo",
+  "lat": 33.9241,
+  "lng": -118.4185,
   "address": "700 W Palm Avenue",
   "listPrice": "$1,599,000",
   "specs": "3 Bed · 2 Bath · 1,732 sq ft · 4,746 sq ft lot · ESUSD",
