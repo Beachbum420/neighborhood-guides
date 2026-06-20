@@ -185,6 +185,43 @@ bands appear automatically.
 
 ---
 
+## Open-house sign-in form (iPad)
+
+A standalone visitor sign-in page builds to **`dist/signin/`** and deploys to
+**`<site>/signin`** — open that on an iPad and leave it running on the welcome table.
+Guests enter name, phone, whether they're working with an agent, and (optionally) email,
+then see a warm "thank you" that auto-resets for the next person.
+
+**Using it at an open house**
+1. On the iPad, open `https://<your-site>/signin` in **normal** Safari (not Private mode).
+2. Tap "Add to Home Screen" if you want it full-screen, and leave it on the form.
+3. Guests sign themselves in; the form resets automatically after each one.
+4. **The agent panel** is hidden so guests don't wander into it — **tap the logo 5 times**
+   to open it. It shows how many guests signed in today, a **Download leads (CSV)** button,
+   and a **Clear leads** button (behind a confirmation).
+
+### ⚠️ CRITICAL — how not to lose your leads
+- Leads are saved **only in that iPad's browser** (localStorage). They are **not sent
+  anywhere** and are not synced to any server or to Cloudflare.
+- **Before you close or clear the browser, tap "Download leads (CSV)"** to save the file.
+  If you clear the browser or its site data without downloading first, the leads are gone.
+- **Do not use Private/Incognito mode** — localStorage doesn't persist there, so entries
+  would vanish when the tab closes.
+- Downloaded file is named `open-house-leads-YYYY-MM-DD.csv`
+  (columns: Name, Phone, Email, Working With Agent, Time).
+
+### Reusing it for the next open house
+Open `template/signin.html` and change the two clearly-marked constants near the top of
+the `<script>`:
+```js
+const LISTING_ADDRESS = "700 W Palm Ave · El Segundo";   // shown in the header
+const GUIDE_NAME      = "El Segundo neighborhood guide"; // used in the thank-you message
+```
+Then `npm run build`. (The page is self-contained — its own inline styles and script — so
+it stays reliable even if other assets are slow to load.)
+
+---
+
 ## Design notes & decisions
 
 - **Colors, fonts, layout** are preserved exactly from the original design: navy

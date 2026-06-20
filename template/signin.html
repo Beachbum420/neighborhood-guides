@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+<title>Open House Sign-In · Beach City Brokers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#13354e; --teal:#2f8f8a; --teal-d:#236f6b; --sand:#e7dcc6;
+    --cream:#f7f2e9; --cream-2:#efe7d8; --ink:#23303a; --muted:#5f6f79;
+    --line:#d8ccb4; --white:#fff; --danger:#b3402f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{
+    font-family:'Inter',system-ui,sans-serif;color:var(--ink);
+    background:var(--cream);line-height:1.5;-webkit-font-smoothing:antialiased;
+    display:flex;justify-content:center;align-items:flex-start;
+    padding:max(24px,env(safe-area-inset-top)) 20px 40px;min-height:100%;
+  }
+
+  .card{
+    background:var(--white);border:1px solid var(--line);border-radius:24px;
+    width:100%;max-width:600px;margin:auto;
+    padding:34px 34px 38px;box-shadow:0 18px 50px rgba(19,53,78,.10);
+  }
+
+  /* header */
+  .brandhead{text-align:center;margin-bottom:26px}
+  .logo{width:150px;height:auto;display:block;margin:0 auto 18px;cursor:default;user-select:none}
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:31px;color:var(--navy);letter-spacing:-.01em;line-height:1.1}
+  .addr{margin-top:8px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-d)}
+
+  /* fields */
+  .field{margin-bottom:20px}
+  label{display:block;font-size:15px;font-weight:600;color:var(--navy);margin-bottom:9px}
+  label .opt{color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0}
+  input[type=text],input[type=tel],input[type=email]{
+    width:100%;font-family:inherit;font-size:20px;color:var(--ink);
+    padding:17px 18px;border:2px solid var(--line);border-radius:14px;
+    background:#fdfbf7;transition:border-color .15s;
+  }
+  input::placeholder{color:#a9b3ba}
+  input:focus{outline:none;border-color:var(--teal)}
+  input.invalid{border-color:var(--danger);background:#fbf1ef}
+
+  /* yes / no segmented toggle */
+  .toggle{display:flex;gap:12px}
+  .toggle button{
+    flex:1;font-family:inherit;font-size:19px;font-weight:600;
+    padding:18px 10px;border:2px solid var(--line);border-radius:14px;
+    background:#fdfbf7;color:var(--navy);cursor:pointer;transition:all .12s;
+  }
+  .toggle button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff;box-shadow:0 6px 16px rgba(47,143,138,.28)}
+  .toggle.invalid button{border-color:var(--danger)}
+
+  .err{display:none;color:var(--danger);font-size:13.5px;font-weight:500;margin-top:8px}
+  .err.show{display:block}
+
+  .submit{
+    width:100%;margin-top:8px;font-family:inherit;font-size:20px;font-weight:700;
+    color:#fff;background:var(--teal);border:none;border-radius:16px;
+    padding:20px;cursor:pointer;transition:background .15s;
+  }
+  .submit:active{background:var(--teal-d)}
+  .privacy{text-align:center;font-size:12.5px;color:var(--muted);margin-top:18px}
+
+  /* thank-you overlay */
+  .overlay{
+    position:fixed;inset:0;z-index:50;display:none;
+    flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    padding:40px 30px;
+  }
+  .overlay.show{display:flex}
+  .thankyou{background:linear-gradient(165deg,#236f6b 0%,#13354e 100%);color:#fff}
+  .thankyou .check{
+    width:92px;height:92px;border-radius:50%;background:rgba(255,255,255,.14);
+    border:2px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;
+    font-size:46px;margin-bottom:26px;
+  }
+  .thankyou h2{font-family:'Fraunces',serif;font-weight:600;font-size:38px;line-height:1.1;margin-bottom:16px;max-width:14ch}
+  .thankyou p{font-size:18px;color:#dceaee;max-width:30ch;margin-bottom:34px}
+  .thankyou .again{
+    font-family:inherit;font-size:18px;font-weight:600;color:var(--navy);
+    background:#fff;border:none;border-radius:14px;padding:17px 30px;cursor:pointer;
+  }
+  .thankyou .auto{margin-top:18px;font-size:13px;color:#9fc4c1}
+
+  /* agent panel */
+  .agentbg{position:fixed;inset:0;z-index:60;background:rgba(19,53,78,.55);display:none;align-items:center;justify-content:center;padding:24px}
+  .agentbg.show{display:flex}
+  .agent{background:#fff;border-radius:20px;max-width:420px;width:100%;padding:28px 26px;text-align:center}
+  .agent h3{font-family:'Fraunces',serif;font-weight:600;font-size:23px;color:var(--navy);margin-bottom:4px}
+  .agent .count{font-size:15px;color:var(--muted);margin-bottom:6px}
+  .agent .count b{font-family:'Fraunces',serif;font-size:34px;color:var(--teal-d);display:block;line-height:1.1;margin-bottom:2px}
+  .agent .total{font-size:12.5px;color:#9aa6ae;margin-bottom:22px}
+  .agent button{width:100%;font-family:inherit;font-size:16px;font-weight:600;border-radius:13px;padding:15px;cursor:pointer;border:none;margin-top:11px}
+  .agent .dl{background:var(--teal);color:#fff}
+  .agent .clear{background:#fff;color:var(--danger);border:2px solid var(--danger)}
+  .agent .close{background:transparent;color:var(--muted);font-weight:500;margin-top:14px}
+
+  @media(max-width:430px){
+    .card{padding:26px 20px 30px;border-radius:20px}
+    h1{font-size:26px}
+    .thankyou h2{font-size:30px}
+  }
+</style>
+</head>
+<body>
+
+  <main class="card" id="formCard">
+    <div class="brandhead">
+      <img class="logo" id="logo" src="/assets/brand/bcb-premier-estates.svg" alt="Beach City Brokers" onerror="this.style.display='none'">
+      <h1>Welcome — please sign in</h1>
+      <div class="addr" id="addr">700 W Palm Ave · El Segundo</div>
+    </div>
+
+    <form id="signinForm" novalidate>
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" type="text" autocomplete="name" autocapitalize="words" placeholder="First &amp; last name" required>
+        <div class="err" id="errName">Please enter your name.</div>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(310) 555-1234" maxlength="14" required>
+        <div class="err" id="errPhone">Please enter a 10-digit phone number.</div>
+      </div>
+
+      <div class="field">
+        <label>Are you working with a real estate agent?</label>
+        <div class="toggle" id="agentToggle" role="group" aria-label="Working with an agent">
+          <button type="button" data-val="yes" aria-pressed="false">Yes</button>
+          <button type="button" data-val="no" aria-pressed="false">No</button>
+        </div>
+        <div class="err" id="errAgent">Please choose Yes or No.</div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email <span class="opt">(optional)</span></label>
+        <input id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" placeholder="you@email.com">
+      </div>
+
+      <button type="submit" class="submit">Submit</button>
+      <p class="privacy">Your info is only used to send you the neighborhood guide.</p>
+    </form>
+  </main>
+
+  <!-- Thank-you confirmation -->
+  <div class="overlay thankyou" id="thankyou">
+    <div class="check">✓</div>
+    <h2 id="tyTitle">Thanks for stopping by!</h2>
+    <p id="tyMsg"></p>
+    <button class="again" id="againBtn">Sign in another guest</button>
+    <div class="auto">Returning to the form shortly…</div>
+  </div>
+
+  <!-- Agent panel (tap the logo 5 times to open) -->
+  <div class="agentbg" id="agentbg">
+    <div class="agent" role="dialog" aria-label="Agent panel">
+      <h3>Agent panel</h3>
+      <div class="count"><b id="todayCount">0</b> guests signed in today</div>
+      <div class="total" id="totalCount"></div>
+      <button class="dl" id="dlBtn">Download leads (CSV)</button>
+      <button class="clear" id="clearBtn">Clear leads</button>
+      <button class="close" id="closeBtn">Close</button>
+    </div>
+  </div>
+
+<script>
+  /* ============================================================
+     OPEN-HOUSE CUSTOMIZATION — change these two lines per event.
+     ============================================================ */
+  const LISTING_ADDRESS = "700 W Palm Ave · El Segundo";       // shown in the header
+  const GUIDE_NAME      = "El Segundo neighborhood guide";     // used in the thank-you message
+  /* ============================================================ */
+
+  const STORAGE_KEY = "bcbOpenHouseLeads";
+  const AUTO_RESET_MS = 6000;
+
+  // --- elements ---
+  const form = document.getElementById("signinForm");
+  const nameI = document.getElementById("name");
+  const phoneI = document.getElementById("phone");
+  const emailI = document.getElementById("email");
+  const toggle = document.getElementById("agentToggle");
+  const thankyou = document.getElementById("thankyou");
+  const agentbg = document.getElementById("agentbg");
+
+  document.getElementById("addr").textContent = LISTING_ADDRESS;
+
+  let agentChoice = null;     // true | false | null
+  let autoResetTimer = null;
+
+  // --- storage helpers (degrade gracefully if storage is unavailable) ---
+  function loadLeads() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch (e) { return []; }
+  }
+  function saveLeads(leads) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(leads)); return true; }
+    catch (e) {
+      alert("Couldn't save this entry — this browser may be in Private mode. Turn it off so leads are kept.");
+      return false;
+    }
+  }
+
+  // --- phone formatting as you type → (XXX) XXX-XXXX ---
+  function formatPhone(v) {
+    const d = v.replace(/\D/g, "").slice(0, 10);
+    if (d.length > 6) return "(" + d.slice(0,3) + ") " + d.slice(3,6) + "-" + d.slice(6);
+    if (d.length > 3) return "(" + d.slice(0,3) + ") " + d.slice(3);
+    if (d.length > 0) return "(" + d.slice(0,3);
+    return "";
+  }
+  phoneI.addEventListener("input", () => {
+    phoneI.value = formatPhone(phoneI.value);
+    phoneI.classList.remove("invalid");
+    document.getElementById("errPhone").classList.remove("show");
+  });
+  nameI.addEventListener("input", () => {
+    nameI.classList.remove("invalid");
+    document.getElementById("errName").classList.remove("show");
+  });
+
+  // --- yes / no toggle ---
+  toggle.querySelectorAll("button").forEach((b) => {
+    b.addEventListener("click", () => {
+      agentChoice = b.dataset.val === "yes";
+      toggle.querySelectorAll("button").forEach((x) =>
+        x.setAttribute("aria-pressed", String(x === b)));
+      toggle.classList.remove("invalid");
+      document.getElementById("errAgent").classList.remove("show");
+    });
+  });
+
+  // --- submit ---
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let ok = true;
+
+    const name = nameI.value.trim();
+    if (!name) { fail(nameI, "errName"); ok = false; }
+
+    const digits = phoneI.value.replace(/\D/g, "");
+    if (digits.length < 10) { fail(phoneI, "errPhone"); ok = false; }
+
+    if (agentChoice === null) {
+      toggle.classList.add("invalid");
+      document.getElementById("errAgent").classList.add("show");
+      ok = false;
+    }
+    if (!ok) return;
+
+    const lead = {
+      name: name,
+      phone: phoneI.value,
+      email: emailI.value.trim(),
+      agentRepresented: agentChoice,
+      timestamp: new Date().toISOString(),
+    };
+    const leads = loadLeads();
+    leads.push(lead);
+    if (!saveLeads(leads)) return;
+
+    showThankYou(name.split(/\s+/)[0]);
+  });
+
+  function fail(input, errId) {
+    input.classList.add("invalid");
+    document.getElementById(errId).classList.add("show");
+  }
+
+  // --- thank-you + auto reset ---
+  function showThankYou(firstName) {
+    document.getElementById("tyTitle").textContent = "Thanks, " + firstName + "!";
+    document.getElementById("tyMsg").textContent =
+      "Thanks for stopping by today. We'll text you the " + GUIDE_NAME + " shortly.";
+    thankyou.classList.add("show");
+    clearTimeout(autoResetTimer);
+    autoResetTimer = setTimeout(resetForm, AUTO_RESET_MS);
+  }
+  function resetForm() {
+    clearTimeout(autoResetTimer);
+    thankyou.classList.remove("show");
+    form.reset();
+    agentChoice = null;
+    toggle.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", "false"));
+    [nameI, phoneI].forEach((i) => i.classList.remove("invalid"));
+    document.querySelectorAll(".err").forEach((el) => el.classList.remove("show"));
+    nameI.focus();
+  }
+  document.getElementById("againBtn").addEventListener("click", resetForm);
+
+  // --- agent panel: tap the logo 5x to open ---
+  let taps = 0, tapTimer = null;
+  document.getElementById("logo").addEventListener("click", () => {
+    taps++;
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(() => (taps = 0), 1500);
+    if (taps >= 5) { taps = 0; openAgent(); }
+  });
+  function openAgent() {
+    const leads = loadLeads();
+    const today = new Date().toDateString();
+    const todayCount = leads.filter((l) => new Date(l.timestamp).toDateString() === today).length;
+    document.getElementById("todayCount").textContent = todayCount;
+    document.getElementById("totalCount").textContent =
+      leads.length === todayCount ? "" : leads.length + " total leads stored";
+    agentbg.classList.add("show");
+  }
+  document.getElementById("closeBtn").addEventListener("click", () => agentbg.classList.remove("show"));
+  agentbg.addEventListener("click", (e) => { if (e.target === agentbg) agentbg.classList.remove("show"); });
+
+  // --- CSV export ---
+  function csvCell(s) {
+    s = String(s == null ? "" : s);
+    return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }
+  document.getElementById("dlBtn").addEventListener("click", () => {
+    const leads = loadLeads();
+    if (!leads.length) { alert("No leads to download yet."); return; }
+    const rows = [["Name", "Phone", "Email", "Working With Agent", "Time"]];
+    leads.forEach((l) => rows.push([
+      l.name, l.phone, l.email || "",
+      l.agentRepresented ? "Yes" : "No",
+      new Date(l.timestamp).toLocaleString(),
+    ]));
+    const csv = "﻿" + rows.map((r) => r.map(csvCell).join(",")).join("\r\n");
+    const today = new Date();
+    const ymd = today.getFullYear() + "-" +
+      String(today.getMonth() + 1).padStart(2, "0") + "-" +
+      String(today.getDate()).padStart(2, "0");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "open-house-leads-" + ymd + ".csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+
+  // --- clear leads (behind a confirm) ---
+  document.getElementById("clearBtn").addEventListener("click", () => {
+    if (confirm("This permanently deletes all saved leads. Did you download them first?")) {
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      openAgent(); // refresh the count
+      alert("All leads cleared.");
+    }
+  });
+</script>
+</body>
+</html>

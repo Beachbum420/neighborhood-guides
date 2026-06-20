@@ -281,7 +281,19 @@ function main() {
     console.log(`  ✓ built dist/${slug}/index.html  (${listing.address}, ${neighborhood.city})`);
   }
 
-  // 3) Optional private index of every guide (handy for you, not linked publicly).
+  // 3) Standalone open-house sign-in page → dist/signin/index.html. It's a
+  //    self-contained page (its own inline styles + script), so we copy it
+  //    verbatim. Per-open-house specifics live in constants at the top of its
+  //    script (see the page), not in the build data.
+  const signinSrc = path.join(TEMPLATE_DIR, "signin.html");
+  if (fs.existsSync(signinSrc)) {
+    const signinDir = path.join(DIST_DIR, "signin");
+    fs.mkdirSync(signinDir, { recursive: true });
+    fs.copyFileSync(signinSrc, path.join(signinDir, "index.html"));
+    console.log("  ✓ built dist/signin/index.html  (iPad open-house sign-in)");
+  }
+
+  // 4) Optional private index of every guide (handy for you, not linked publicly).
   writeIndex(built);
 
   console.log(`\nDone — ${built.length} guide${built.length === 1 ? "" : "s"} written to dist/.`);
