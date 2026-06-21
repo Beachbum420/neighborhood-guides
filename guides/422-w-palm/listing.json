@@ -1,0 +1,31 @@
+{
+  "slug": "422-w-palm",
+  "neighborhood": "el-segundo",
+  "address": "422 W Palm Avenue",
+  "listPrice": "$1,899,900",
+  "specs": "Front: 3 Bed · 1.5 Bath (SFR) · Rear: 2 Bed · 2 Bath (built 1988) · 8,365 sq ft lot",
+  "lat": 33.9223,
+  "lng": -118.4205,
+  "tag": "Two-on-a-Lot — Income + Build Your Dream Home",
+  "blurb": "Opportunity abounds with this classic El Segundo Spanish-style property on a huge 50 x 168 (8,365 sq ft) lot on the desirable southwest corner of town — walking distance to schools, the park, library, beach, and downtown. The front house is a characterful 1920s-era Spanish 3-bed/1.5-bath with dining room, breakfast nook, coved ceilings, and hardwood floors (not livable in current condition — bring your vision). The rear house is a 2-bed/2-bath, 1,000 sq ft unit built in 1988 with a full kitchen. Two 2-car garages off the alley. A perfect chance for an end-user to build their dream home while offsetting the mortgage with rental income, housing extended family, or adding an ADU.",
+  "zillowUrl": "https://www.zillow.com/homes/422-W-Palm-Ave-El-Segundo-CA-90245_rb/",
+  "heroPhoto": "photos/hero.jpg",
+  "galleryPhotos": ["photos/livingroom.jpg", "photos/kitchen.jpg", "photos/livingroom2.jpg", "photos/bathroom.jpg", "photos/yard.jpg"],
+
+  "marketNote": "El Segundo multi-family homes are listing around a $2.2M median and selling in ~27 days (spring 2026).",
+
+  "similarForSale": [],
+  "recentlySold": [
+    {"price": "$1,750,000", "badge": "Sold Jan 2026", "badgeType": "sold", "street": "742 Loma Vista St", "specs": "Two-on-a-lot duplex · 3+2 front / 2+1 rear · 2,048 sq ft · 5,257 lot", "note": "The closest comp — a detached two-on-a-lot duplex, beautifully updated.", "zillow": "https://www.zillow.com/homes/742-Loma-Vista-St-El-Segundo-CA-90245_rb/"},
+    {"price": "$2,115,000", "badge": "Sold Oct 2025", "badgeType": "sold", "street": "403 E Pine Ave", "specs": "5 bd · 3 ba · 2,193 sq ft · $964/sq ft · sold in 7 days", "note": "Shows what a finished El Segundo home commands — the build-your-dream upside.", "zillow": "https://www.zillow.com/homes/403-E-Pine-Ave-El-Segundo-CA-90245_rb/"},
+    {"price": "$1,763,000", "badge": "Sold Apr 2026", "badgeType": "sold", "street": "804 Hillcrest St", "specs": "4 bd · 2 ba · 2,000 sq ft · $882/sq ft · 10 days on market", "note": "Recent west-side single-family sale for broader market context.", "zillow": "https://www.zillow.com/homes/804-Hillcrest-St-El-Segundo-CA-90245_rb/"}
+  ],
+
+  "agent": {
+    "name": "Ryan Verbiest",
+    "license": "Beach City Brokers · DRE #02185763",
+    "phoneRaw": "+13109957741",
+    "phoneDisplay": "(310) 995-7741",
+    "email": "ryanverbiest@gmail.com"
+  }
+}

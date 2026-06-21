@@ -59,7 +59,7 @@
 
     {{#each similarForSale}}
     <div class="card">
-      <div class="ctop"><div class="price">{{price}}</div><span class="badge active">Active</span></div>
+      <div class="ctop"><div class="price">{{price}}</div><span class="badge {{#if badgeType}}{{badgeType}}{{else}}active{{/if}}">{{#if badge}}{{badge}}{{else}}Active{{/if}}</span></div>
       <div class="street">{{street}}</div>
       <div class="specs">{{specs}}</div>
       {{#if note}}<div class="meta">{{note}}</div>{{/if}}
@@ -78,13 +78,14 @@
 
     {{#each recentlySold}}
     <div class="card">
-      <div class="ctop"><div class="price">{{price}}</div><span class="badge sold">Sold</span></div>
+      <div class="ctop"><div class="price">{{price}}</div><span class="badge {{#if badgeType}}{{badgeType}}{{else}}sold{{/if}}">{{#if badge}}{{badge}}{{else}}Sold{{/if}}</span></div>
       <div class="street">{{street}}</div>
       <div class="specs">{{specs}}</div>
       {{#if note}}<div class="meta">{{note}}</div>{{/if}}
       {{#if zillow}}<a class="zlink" href="{{zillow}}" target="_blank" rel="noopener">View on Zillow <span>↗</span></a>{{/if}}
     </div>
     {{/each}}
+    {{#if marketNote}}<p class="snap-note">{{marketNote}}</p>{{/if}}
   </section>
   {{/if}}
 
