@@ -4,9 +4,14 @@
   "private": true,
   "description": "Static-site generator for Beach City Brokers open-house neighborhood guides.",
   "scripts": {
-    "build": "node build.js"
+    "build": "node build.js",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
   },
   "dependencies": {
     "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "wrangler": "^4.103.0"
   }
 }
