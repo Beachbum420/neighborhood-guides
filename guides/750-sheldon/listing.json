@@ -1,0 +1,81 @@
+{
+  "slug": "750-sheldon",
+  "neighborhood": "el-segundo",
+  "lat": 33.9214,
+  "lng": -118.4098,
+  "address": "750 Sheldon Street",
+  "listPrice": "$1,799,900",
+  "specs": "3 Bed · 3 Bath · 1,584 sq ft · 6,757 sq ft lot · ESUSD",
+  "tag": "Turnkey Single-Story — One-Level Living in the Heart of El Segundo",
+  "blurb": "Rare <strong>fully updated, single-story home</strong> on a generous 6,757 sq ft lot in one of El Segundo's most walkable pockets. Step inside to granite counters, a family kitchen with dining, recessed lighting, and vinyl plank floors throughout — <strong>move in and enjoy from day one.</strong> Three full bathrooms including a stunning primary suite with a showpiece copper soaking tub. All bedrooms on one level, a 1-car garage, and direct access to Recreation Park, top-rated schools (Center St Elementary is 0.4 mi, ES High is 0.3 mi), and downtown Main Street. In a town where finished homes sell in under 30 days, this one is ready to go.",
+  "disclaimer": "Buyer to verify all details, square footage, and permits. Information deemed reliable but not guaranteed.",
+  "zillowUrl": "https://www.zillow.com/homes/750-Sheldon-St-El-Segundo-CA-90245_rb/",
+  "heroPhoto": "photos/hero.jpg",
+  "galleryPhotos": [
+    "photos/kitchen.jpg",
+    "photos/living.jpg",
+    "photos/bath1.jpg",
+    "photos/bath2.jpg"
+  ],
+  "similarForSale": [
+    {
+      "price": "$1,749,000",
+      "street": "944 Sheldon St",
+      "specs": "3 bd · 2 ba · 1,172 sq ft · Single-family",
+      "badge": "Pending",
+      "badgeType": "pending",
+      "note": "Just down the street — went pending fast.",
+      "zillow": "https://www.zillow.com/homes/944-Sheldon-St-El-Segundo-CA-90245_rb/"
+    },
+    {
+      "price": "$1,499,000",
+      "street": "700 W Palm Ave",
+      "specs": "3 bd · 2 ba · 1,732 sq ft · Two-story",
+      "badge": "Pending",
+      "badgeType": "pending",
+      "note": "Renovation opportunity — priced below market for the work needed.",
+      "zillow": "https://www.zillow.com/homedetails/700-W-Palm-Ave-El-Segundo-CA-90245/20392018_zpid/"
+    },
+    {
+      "price": "$1,464,000",
+      "street": "700 W Palm Ave (1,464 sq ft)",
+      "specs": "3 bd · 2 ba · 1,464 sq ft · Single-family",
+      "badge": "Active",
+      "badgeType": "active",
+      "note": "Comparable sq footage — good benchmark for the market.",
+      "zillow": "https://www.zillow.com/homes/El-Segundo-CA-90245_rb/"
+    }
+  ],
+  "recentlySold": [
+    {
+      "price": "$1,763,000",
+      "street": "804 Hillcrest St",
+      "specs": "4 bd · 2 ba · 2,000 sq ft · $882/sq ft",
+      "note": "Sold Apr 2026 · 10 days on market",
+      "zillow": "https://www.zillow.com/homes/804-Hillcrest-St-El-Segundo-CA-90245_rb/"
+    },
+    {
+      "price": "$2,115,000",
+      "street": "403 E Pine Ave",
+      "specs": "5 bd · 3 ba · 2,193 sq ft · $964/sq ft",
+      "note": "Sold Oct 2025 · 7 days on market — finished homes fly here",
+      "zillow": "https://www.zillow.com/homes/403-E-Pine-Ave-El-Segundo-CA-90245_rb/"
+    },
+    {
+      "price": "$1,617,000",
+      "street": "90245 Median Sale",
+      "specs": "Market median · $869/sq ft · avg 29 days on market",
+      "note": "May 2026 — 21 homes sold in the zip last month",
+      "zillow": "https://www.redfin.com/zipcode/90245/housing-market"
+    }
+  ],
+  "marketNote": "El Segundo homes are selling for a median of $1.6M and going pending in ~29 days (May 2026). Finished, move-in ready homes consistently trade above list.",
+  "agent": {
+    "name": "Ryan Verbiest",
+    "license": "Beach City Brokers · DRE #02185763",
+    "phoneRaw": "+13109957741",
+    "phoneDisplay": "(310) 995-7741",
+    "email": "ryanverbiest@gmail.com",
+    "photo": "/assets/agent/ryan-verbiest.jpg"
+  }
+}
